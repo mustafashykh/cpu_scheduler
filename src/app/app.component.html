@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="card mt-5">
+    <div class="card-header text-center">
+      <b class="h3">SCHEDULER</b>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="addProcess()" class="w-auto mr-auto mt-2 mb-5">
+        <p class="heading">ADD A PROCESS TO THE QUEUE</p>
+        <small class="red" *ngIf="err.first">*Please fill this field</small>
+        <input class="form-control mb-2" type="text" name="name" placeholder="Enter Prcess Name" [(ngModel)]="process.pid">
+        <small class="red" *ngIf="err.second">*Please fill this field</small>
+        <input class="form-control mb-2" type="text" name="burstTime" placeholder="Enter Burst Time" [(ngModel)]="process.bt">
+        <small class="red" *ngIf="err.third">*Please fill this field</small>
+        <input class="form-control mb-2" type="text" name="arrivalTime" placeholder="Enter Arrival Time" [(ngModel)]="process.art">
+        <div class="w-100 text-right">
+          <button type="submit" class="btn btn-dark w-25">ADD</button>
+        </div>
+      </form>
+      <div class="w-100 mx-auto text-center" *ngIf="(list.length != 0)">
+        <button class="btn btn-dark mx-auto w-25 py-2 mb-5" (click)="execute()" >EXECUTE</button>
+      </div>
+      <div class="row">
+        <div class="w-75 alert alert-info mx-auto text-center" *ngIf="(list.length == 0)">
+          THE QUEUE IS CURRENTLY EMPTY
+        </div>
+
+        <div class="w-75 mx-auto" *ngIf="(list.length != 0)">
+          <div class="row process-table">
+            <div class="col-4 text-center">ID</div>
+            <div class="col-4 text-center">BURST TIME</div>
+            <div class="col-4 text-center">ARRIVAL TIME</div>
+          </div>
+        </div>
+
+        <div class="w-75 mx-auto" *ngFor="let pro of list">
+          <div class="row process-style">
+            <div class="col-4 text-center my-1">{{pro.pid}}</div>
+            <div class="col-4 text-center my-1">{{pro.bt}}</div>
+            <div class="col-4 text-center my-1">{{pro.art}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col"><button class="btn btn-sheduler w-100" (click)="selectScheduler('FCFS')" [ngClass]="{'btn-selected': (selectedScheduler === 'FCFS')}">FCFS</button></div>
+        <div class="col"><button class="btn btn-sheduler w-100" (click)="selectScheduler('SJF')" [ngClass]="{'btn-selected': (selectedScheduler === 'SJF')}">SJF</button></div>
+      </div>
+
+
+      <div class="row" *ngIf="(result.length > 0)">
+        <p class="w-75 mb-2 mt-5 mx-auto h3 text-center">RESULT</p>
+        <div class="w-75 mx-auto">
+          <div class="row queue">
+            <div class="col-2 px-0" *ngFor="let item of result">
+              <p class="text-center queue-item w-100">{{item.pid}}</p>
+              <p class="text-right w-100">{{ item.preemtTime }}</p>
+            </div>
+            <p class="w-100" *ngIf="result.length != 0"><b>TOTAL EXECUTION TIME: </b>{{totalExecutionTime}} ms</p>
+            <p class="w-100" *ngIf="result.length != 0"><b>AVG WAITING TIME: </b>{{avgWaitingTime}} ms</p>
+            <p class="w-100" *ngIf="result.length != 0"><b>AVG TURN AROUND TIME: </b>{{avgTAT}} ms</p>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="w-75 mx-auto" *ngIf="(result.length > 0)">
+          <div class="row process-table">
+            <div class="col-3 text-center">ID</div>
+            <div class="col-3 text-center">TURN ARROUND TIME</div>
+            <div class="col-3 text-center">ARRIVAL TIME</div>
+            <div class="col-3 text-center">WAITING TIME</div>
+          </div>
+
+        <div class="mx-auto" *ngFor="let pro of result">
+          <div class="row process-style">
+            <div class="col-3 text-center my-1">{{pro.pid}}</div>
+            <div class="col-3 text-center my-1">{{pro.tat}}</div>
+            <div class="col-3 text-center my-1">{{pro.art}}</div>
+            <div class="col-3 text-center my-1">{{pro.wt}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

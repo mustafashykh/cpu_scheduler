@@ -1,0 +1,76 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+body{
+    background-color: #55AFE2;
+}
+
+.w-auto{
+  width: 50% !important;
+}
+
+.heading{
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.process-style{
+    border-bottom: 1px solid #000;
+}
+
+.process-table{
+    font-weight: bold;
+}
+
+.red{
+    color: red;
+}
+/*
+.queue{
+    /* border: 1px solid #000; */
+/* }     */
+.queue-item{
+    border: 1px solid #000;
+    margin-bottom: 0;
+}
+
+.border-table{
+    border: 1px solid #000;
+}
+
+.time{
+    padding-left: 0;
+}
+
+.time-text{
+    margin-right: 3px;
+    border-right: 1px solid #000;
+}
+
+
+.btn-sheduler{
+    color: #55AFE2;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: #fff;
+    border: 2px solid #55AFE2;
+    box-shadow: none !important;
+
+}
+
+.btn-sheduler:hover,.btn-selected{
+    color: #fff;
+    background-color: #55AFE2;
+}
+
+
+@media (max-width: 576px) {
+  .heading{
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .w-auto{
+    width: 100% !important;
+  }
+}
