@@ -1,0 +1,3 @@
+[submodule "cpu_scheduler_backend"]
+	path = cpu_scheduler_backend
+	url = https://github.com/mustafasheikh1/cpu_scheduler_backend.git
